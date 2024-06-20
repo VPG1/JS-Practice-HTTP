@@ -362,7 +362,7 @@ app.get('/resp501', (req, res) => {
     res.status(200).send('All OK');
 });
 
-app.get('/resp501', (req, res) => {
+app.head('/resp501', (req, res) => {
     res.status(200).send('All OK');
 });
 
@@ -377,6 +377,89 @@ app.get('/deleted-resource', (req, res) => {
     // Возвращаем статус 410 (Gone) и сообщение об ошибке
     res.status(410).send('Gone. The requested resource is no longer available.');
 });
+
+app.get('/server-error', (req, res) => {
+    res.status(502).send('Bad Gateway. The server received an invalid response from an upstream server.');
+});
+
+// Обработчик для маршрута /maintenance код 503
+app.get('/maintenance', (req, res) => {
+    // Устанавливаем заголовок Retry-After для указания времени повторного запроса
+    res.set('Retry-After', '3600'); // 3600 секунд = 1 час
+    
+    // Возвращаем статус 503 (Service Unavailable)
+    res.status(503).send('Service Unavailable. Please try again later.');
+});
+
+// Обработчик для маршрута /gateway-timeout 4 код 504
+app.get('/gateway-timeout', async (req, res) => {
+    // Симулируем задержку, например, ожидание ответа от внешнего API
+    await simulateDelay(10000); // 10 секунд
+
+    // Возвращаем статус 504 (Gateway Timeout)
+    res.status(504).send('Gateway Timeout. The server did not receive a timely response from the upstream server.');
+});
+
+// код 505 
+app.use("/get-endpoint505", (req, res, next) => {
+    const httpVersion = req.httpVersion;
+    // Проверяем версию HTTP
+    if (httpVersion === '1.1') {
+        // Возвращаем статус 505 (HTTP Version Not Supported)
+        return res.status(505).send('HTTP Version Not Supported. The server does not support the HTTP version used in the request.');
+    }
+    next();
+});
+
+// Пример маршрута код 505
+app.get('/get-endpoint505', (req, res) => {
+    res.send('Hello, world!');
+});
+
+
+// Обработчик для маршрута /variant, код 506
+app.get('/variant', (req, res) => {
+    // Возвращаем статус 506 (Variant Also Negotiates)
+    res.status(506).send('Variant Also Negotiates. There is an internal configuration error with transparent content negotiation.');
+});
+
+// Обработчик для маршрута /upload, код 507
+app.post('/endpoint507', (req, res) => {
+    // Симулируем ситуацию нехватки места для хранения
+    const isStorageFull = true;
+
+    if (isStorageFull) {
+        // Возвращаем статус 507 (Insufficient Storage)
+        return res.status(507).send('Insufficient Storage. The server is unable to store the representation needed to complete the request.');
+    }
+
+    // Логика для обработки успешного хранения файла
+    res.send('File uploaded successfully.');
+});
+
+
+
+// Код 511
+// Middleware для проверки аутентификации
+app.use((req, res, next) => {
+    // Проверяем, авторизован ли пользователь
+    const isAuthenticated = false; // Измените это на реальную логику проверки аутентификации
+
+    if (!isAuthenticated) {
+        // Возвращаем статус 511 (Network Authentication Required)
+        return res.status(511).send('Network Authentication Required. Please authenticate to gain network access.');
+    }
+
+    next();
+});
+
+// Пример маршрута
+app.get('/endpoint511', (req, res) => {
+    res.send('Hello, world!');
+});
+
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
