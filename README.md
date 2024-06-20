@@ -5,7 +5,9 @@
 ### 100 Continue
 ### Промежуточный ответ, он указывает, что клиент должен продолжить запрос или игнорировать этот ответ, если запрос уже завершен.
 ### Продемонстрирован при помощи собтсвенного сервер
+#### postman
 ![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman100.png)
+#### wireshark
 ![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/wireshark100.png)
 
 
@@ -109,47 +111,70 @@
 ### 400 Bad Request
 ### Продемонстрован при помощи GET запроса к Weather Api
 ### https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10000&appid=ce15bbbdbb3e29755de95d36bd2595e4
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman400.png)
 
 ### 401 Unauthorized
 ### Продемонстрован при помощи GET запроса к Weather Api
 ### https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10&appid=ce15bbbdbb3e29755de95d36bd2595e
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman401.png)
+
 
 ### 403 Forbidden
 ### Продемонстрирован при помощи собтсвенного сервер. 
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman403.png)
 
 ### 404 Not Found
 ### Продемонстрован при помощи GET запроса к Weather Api
 ### https://api.openweathermap.org/data/2.5/weather?q=Londn&appid=ce15bbbdbb3e29755de95d36bd2595e4
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman404.png)
 
 ### 405 Method Not Allowed
 ### Продемонстрован при помощи PUT запроса к Weather Api
 ### https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=100&appid=ce15bbbdbb3e29755de95d36bd2595e4
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman405.png)
 
 ### 406 Not Acceptable
 ### Продемонстрирован при помощи собтсвенного сервер. Проверяет загаловок accept.
-
+#### Если accept = application/json
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman406p2.png)
+#### Иначе возращает 406
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman406p1.png)
 
 ### 408 Request Timeout
 ### Продемонстрирован при помощи собтсвенного сервер. Через 10 секунд возращает код 408.
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman408.png)
 
 ### 410 Gone
 ### Продемонстрирован при помощи собтсвенного сервер.
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman410.png)
 
 ### 411 Length Required
 ### Продемонстрирован при помощи собтсвенного сервер. Если поля заголовка Content-length нет, то 411, иначе 200.
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman411.png)
 
 ### 412 Precondition Failed
 ### Продемонстрирован при помощи собтсвенного сервер. В зависимости от поля заголовка If-match.
+#### Если If-match правильный.
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman412p1.png)
+#### Иначе возращает 406
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman412p2.png)
 
 ### 413 Payload Too Large
 ### Продемонстрирован при помощи собтсвенного сервер. Если размер тела превышает 1 мб, то сервер отправляет 413.
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman413.png)
 
 ### 416 Range Not Satisfiable
 ### Продемонстрирован при помощи собтсвенного сервер. Если некорректный поля заголовка range
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman416.png)
 
 ### Ошибки сервера (500 – 599)
 ### 500 Internal Server Error
 ### Продемонстрирован при помощи собтсвенного сервер. Если видео нет на сервере код ответа 500.
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman500.png)
 
 ### 501 Not Implemented
 ### Продемонстрирован при помощи собтсвенного сервер. Если запрос не GET или HEAD, то возращает 501.
+#### Если запрос GET или HEAD
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman501p1.png)
+#### Если любой другой запрос
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman501p2.png)
