@@ -2,6 +2,9 @@ import express, { json } from 'express';
 import fs from 'fs';
 import path from 'path';
 import bodyParser from 'body-parser';
+import { rateLimit } from 'express-rate-limit'
+// const rateLimit = require('express-rate-limit');
+
 const app = express();
 
 // Middleware для обработки заголовка Expect: 100-continue
@@ -347,7 +350,7 @@ app.put('/update-resource', (req, res) => {
 });
 
 
-
+// Код 413
 // Используем middleware для ограничения размера тела запроса до 1MB
 app.use('/upload-data', bodyParser.json({ limit: '1mb' }));
 
@@ -357,6 +360,46 @@ app.post('/upload-data', (req, res) => {
     console.log(req.body);
     res.send('Data uploaded successfully.');
 });
+
+// Код 417
+// Middleware для проверки заголовка Expect
+app.use('/endpoint417', (req, res, next) => {
+    const expectHeader = req.headers['expect'];
+    
+    // Проверяем, содержит ли заголовок Expect значение '100-continue'
+    if (expectHeader === '100-continue') {
+        // В данном примере мы симулируем, что сервер не может удовлетворить ожидание клиента
+        return res.status(417).send('Expectation Failed. The server cannot meet the requirements of the Expect request-header field.');
+    }
+
+    next();
+});
+
+// Пример маршрута
+app.get('/endpoint417', (req, res) => {
+    res.send('Hello, world!');
+});
+
+
+// Код 429
+// Настройка ограничения скорости запросов
+const limiter = rateLimit({
+    windowMs: 60 * 1000, // 1 минута
+    max: 5, // Ограничение: 5 запросов на окно времени (1 минута)
+    message: 'Too many requests, please try again later.'
+});
+
+// Применяем ограничение скорости ко всем маршрутам
+app.use('/too-many-requests',limiter);
+
+// Пример маршрута
+app.get('/too-many-requests', (req, res) => {
+    res.send('Hello, world!');
+});
+
+
+
+
 
 app.get('/resp501', (req, res) => {
     res.status(200).send('All OK');
@@ -441,7 +484,7 @@ app.post('/endpoint507', (req, res) => {
 
 // Код 511
 // Middleware для проверки аутентификации
-app.use((req, res, next) => {
+app.use('/endpoint511', (req, res, next) => {
     // Проверяем, авторизован ли пользователь
     const isAuthenticated = false; // Измените это на реальную логику проверки аутентификации
 
