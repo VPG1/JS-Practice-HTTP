@@ -174,6 +174,15 @@
 ### Продемонстрирован при помощи собтсвенного сервер. Если некорректный поля заголовка range
 ![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman416.png)
 
+### 417 Expectation Failed
+### Если поле expect: 100-continue
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman417.png)
+
+
+### 429 Too Many Requests
+### Продемонстрирован при помощи собтсвенного сервер. Если сделать больше 5 запросов за минуту то:
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman429.png)
+
 ### Ошибки сервера (500 – 599)
 ### 500 Internal Server Error
 ### Продемонстрирован при помощи собтсвенного сервер. Если видео нет на сервере код ответа 500.
