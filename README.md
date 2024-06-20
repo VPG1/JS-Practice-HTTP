@@ -185,3 +185,25 @@
 ![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman501p1.png)
 #### Если любой другой запрос
 ![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman501p2.png)
+
+
+### 502 Bad Gateway
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman502.png)
+
+### 503 Service Unavailable
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman503.png)
+
+
+### 505 HTTP Version Not Supported
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman505.png)
+
+### 506 Variant Also Negotiates
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman506.png)
+
+### 507 Insufficient Storage
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman507.png)
+
+### 511 Network Authentication Required
+![Alt-текст](https://github.com/VPG1/JS-Practice-HTTP/blob/main/images/postman511.png)
+
+
