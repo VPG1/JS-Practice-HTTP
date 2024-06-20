@@ -349,7 +349,7 @@ app.put('/update-resource', (req, res) => {
 
 
 // Используем middleware для ограничения размера тела запроса до 1MB
-app.use('/upload-data', bodyParser.json({ limit: '1kb' }));
+app.use('/upload-data', bodyParser.json({ limit: '1mb' }));
 
 // Обработчик для POST запроса к /upload-data
 app.post('/upload-data', (req, res) => {
@@ -358,15 +358,15 @@ app.post('/upload-data', (req, res) => {
     res.send('Data uploaded successfully.');
 });
 
-app.get('/resp505', (req, res) => {
+app.get('/resp501', (req, res) => {
     res.status(200).send('All OK');
 });
 
-app.get('/resp505', (req, res) => {
+app.get('/resp501', (req, res) => {
     res.status(200).send('All OK');
 });
 
-app.all('/resp505', (req, res) => {
+app.all('/resp501', (req, res) => {
     // Возвращаем статус 501 (Not Implemented) и сообщение об ошибке
     res.status(501).send('Not Implemented. The server does not support the requested method.');
 });
